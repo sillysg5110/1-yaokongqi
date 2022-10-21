@@ -7,6 +7,11 @@ basic.showLeds(`
     . # # # #
     # # # # #
     `)
+loops.everyInterval(1000, function () {
+    if (GHBit.Rocker(GHBit.enRocker.Nostate)) {
+        radio.sendString("0")
+    }
+})
 basic.forever(function () {
     if (GHBit.Button(GHBit.enButton.B1, GHBit.enButtonState.Press)) {
         pins.digitalWritePin(DigitalPin.P0, 0)
@@ -67,9 +72,5 @@ basic.forever(function () {
             `)
     } else if (GHBit.Rocker(GHBit.enRocker.Press)) {
         basic.clearScreen()
-    } else if (GHBit.Rocker(GHBit.enRocker.Nostate)) {
-        radio.sendString("0")
-    } else {
-    	
     }
 })
